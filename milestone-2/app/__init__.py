@@ -67,6 +67,4 @@ def create_app(config_object=DevConfig):
     # Create supabase Client as a Flask app attribute
     setattr(app, "supabase", connect_to_db(app.config["SUPABASE_KEY"]))
 
-    download_embedding_model(app.config)
-
     return app
