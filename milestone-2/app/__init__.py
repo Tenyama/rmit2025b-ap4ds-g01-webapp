@@ -41,27 +41,27 @@ def create_app(config_object=DevConfig):
     setattr(
         app,
         "idf_dict",
-        load_idf_weights("./data/trained_models/idf_weights.json"),
+        load_idf_weights("./app/ml_models/idf_weights.json"),
     )
     setattr(
         app,
         "bow_logreg_model",
-        load_model("./data/trained_models/bow_title+text_logreg_bal.joblib"),
+        load_model("./app/ml_models/bow_title+text_logreg_bal.joblib"),
     )
     setattr(
         app,
         "bow_nb_model",
-        load_model("./data/trained_models/bow_title+text_nb.joblib"),
+        load_model("./app/ml_models/bow_title+text_nb.joblib"),
     )
     setattr(
         app,
         "emb_logreg_bal_unweighted",
-        load_model("./data/trained_models/emb_logreg_bal_unweighted.joblib"),
+        load_model("./app/ml_models/emb_logreg_bal_unweighted.joblib"),
     )
     setattr(
         app,
         "emb_logreg_bal_weighted",
-        load_model("./data/trained_models/emb_logreg_bal_weighted.joblib"),
+        load_model("./app/ml_models/emb_logreg_bal_weighted.joblib"),
     )
 
     # Create supabase Client as a Flask app attribute
