@@ -24,30 +24,30 @@ def predict_recommendation(title: str, body: str) -> int:
     )
     predictions.append(bow_nb_label)
 
-    ft_model = FastTextVectorizer(current_app.idf_dict)  # type: ignore
-    ft_model.load_model(
-        "./data/fasttext_thin.kv.vectors_ngrams.npy", "./data/vocab.txt"
-    )
-
-    # --- Model 3:  ---
-    emb_logreg_bal_unweighted_model = current_app.emb_logreg_bal_unweighted  # type: ignore
-    emb_logreg_bal_unweighted_label = predict_review(
-        full_review,
-        model=emb_logreg_bal_unweighted_model,
-        vector_type=VectorType.AVERAGE,
-        vectorizer=ft_model,
-    )
-    predictions.append(emb_logreg_bal_unweighted_label)
-
-    # --- Model 4:  ---
-    emb_logreg_bal_weighted_model = current_app.emb_logreg_bal_weighted  # type: ignore
-    emb_logreg_bal_weighted_label = predict_review(
-        full_review,
-        model=emb_logreg_bal_weighted_model,
-        vector_type=VectorType.TFIDF,
-        vectorizer=ft_model,
-    )
-    predictions.append(emb_logreg_bal_weighted_label)
+    # ft_model = FastTextVectorizer(current_app.idf_dict)  # type: ignore
+    # ft_model.load_model(
+    #     "./data/fasttext_thin.kv.vectors_ngrams.npy", "./data/vocab.txt"
+    # )
+    #
+    # # --- Model 3:  ---
+    # emb_logreg_bal_unweighted_model = current_app.emb_logreg_bal_unweighted  # type: ignore
+    # emb_logreg_bal_unweighted_label = predict_review(
+    #     full_review,
+    #     model=emb_logreg_bal_unweighted_model,
+    #     vector_type=VectorType.AVERAGE,
+    #     vectorizer=ft_model,
+    # )
+    # predictions.append(emb_logreg_bal_unweighted_label)
+    #
+    # # --- Model 4:  ---
+    # emb_logreg_bal_weighted_model = current_app.emb_logreg_bal_weighted  # type: ignore
+    # emb_logreg_bal_weighted_label = predict_review(
+    #     full_review,
+    #     model=emb_logreg_bal_weighted_model,
+    #     vector_type=VectorType.TFIDF,
+    #     vectorizer=ft_model,
+    # )
+    # predictions.append(emb_logreg_bal_weighted_label)
 
     # --- Fusion: majority vote ---
     counts = Counter(predictions)
