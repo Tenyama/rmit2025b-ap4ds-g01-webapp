@@ -2,6 +2,9 @@ import re
 from nltk.stem import WordNetLemmatizer
 from spellchecker import SpellChecker
 from typing import List
+import nltk
+
+nltk.download("wordnet")
 
 
 class Tokenizer:
