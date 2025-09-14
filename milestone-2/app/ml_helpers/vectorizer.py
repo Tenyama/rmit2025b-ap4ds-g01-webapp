@@ -2,8 +2,6 @@ from huggingface_hub import hf_hub_download
 from pathlib import Path
 import numpy as np
 import json
-import requests
-from io import BytesIO
 
 
 def download_embedding_model(hf_token):
@@ -60,12 +58,8 @@ class FastTextVectorizer:
     def _load_vectors(self, embeddings_path, vocab_path=None):
         """Load the embeddings and vocabulary mapping"""
         # Load the embeddings
-        # embeddings = np.load(embeddings_path)  # shape: (vocab_size, embedding_dim)
-        url = "https://huggingface.co/tsun2610/FastText-english-text-vectors/resolve/main/fasttext_thin.kv.vectors_ngrams.npy"
-        response = requests.get(url)
-        embeddings = np.load(BytesIO(response.content), allow_pickle=True)
+        embeddings = np.load(embeddings_path)  # shape: (vocab_size, embedding_dim)
         vector_size = embeddings.shape[1]
-        print(embeddings.shape)
 
         if vocab_path:
             vocab = {}
